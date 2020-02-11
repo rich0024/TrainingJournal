@@ -1,0 +1,21 @@
+<h1>Welcome</h1>
+<p>Find me in app/views/sessions/home.html.erb</p>
+
+<%= form_for :user do |f| %>
+
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <br>
+    <br>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br>
+    <br>
+    <%= f.submit 'Login' %>
+    <% end %>
+    <br>
+    <br>
+    <p> Don't have an account? </p>
+    <br>
+    
+<%= button_to "Signup", '/signup' %> 

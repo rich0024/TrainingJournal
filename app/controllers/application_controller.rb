@@ -1,2 +1,23 @@
 class ApplicationController < ActionController::Base
+
+    def logged_in?
+        !!session[:user_id]
+    end
+
+    def redirect_if_not_logged_in
+        redirect_to '/' if !logged_in?
+    end
+
+    def current_user
+        User.find_by_id(session[:user_id])
+    end
+
+    def correct__lesson_user?
+        current_user.id == @lesson.user_id
+    end
+
+    def correct__workout_user?
+        current_user.id == @workout.user_id
+    end
+
 end
