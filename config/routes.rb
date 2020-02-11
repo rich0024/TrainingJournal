@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   post '/signup' => 'users#create'
   delete '/logout' => 'sessions#destroy'
   
-  resources :workouts
-  resources :lessons
-  resources :users
+  resources :lessons do 
+    resources :workouts, only: [:new, :create, :index]
+  end
+
+  resources :users do
+    resources :lessons, only: [:new, :create, :index]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

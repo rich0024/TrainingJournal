@@ -1,0 +1,15 @@
+<h1>New lesson</h1>
+
+<%= form_for(@lesson) do |f| %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+    <br>
+    <%= f.label :datetime %>
+    <%= f.datetime_select :datetime %>
+    <br>
+    <br>
+    <%= f.submit 'Submit' %>
+
+    <% end %>
