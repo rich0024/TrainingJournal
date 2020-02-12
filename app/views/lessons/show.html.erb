@@ -4,21 +4,20 @@
   <thead>
     <tr>
       <th>Session</th>
-      <th>Date and time</th>
+      <th>Date</th>
     </tr>
   </thead>
   
-<tbody>
-  <tr>
-    <td><%= @lesson.name %></td>
-    <td><%= @lesson.date %></td>
-    <td><%= link_to 'Edit', edit_lesson_path(@lesson) %></td>
-    <td><%= link_to 'Destroy', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-</tbody>
+  <tbody>
+    <tr>
+      <td><%= @lesson.name %></td>
+      <td><%= @lesson.date %></td>
+      <td><%= link_to 'Edit', edit_lesson_path(@lesson) %></td>
+      <td><%= link_to 'Destroy', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  </tbody>
 </table>
-
-
+<br>
 <table>
   <thead>
     <tr>
@@ -27,14 +26,14 @@
   </thead>
 
   <tbody>
-    <%= @lesson.workouts.each do |workout| %>
-      <tr>
-        <td><%= workout.name %></td>
-        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
-        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+    <% @workouts.each do |workout| %>
+      <td><%= workout.name %></td>
+      <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+      <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
+    </tr>
   </tbody>
 </table>
-<%= link_to 'Add Workout', new_lesson_workout_path(@lesson) %>
-<%= link_to 'Back', lessons_path %>
+<br>
+<%= link_to 'Add Workout', new_lesson_workout_path(@lesson) %> | <%= link_to 'Back', lessons_path %>

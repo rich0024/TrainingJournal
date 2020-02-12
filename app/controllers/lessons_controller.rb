@@ -20,6 +20,7 @@ class LessonsController < ApplicationController
 
     def show
         @lesson = Lesson.find_by_id(params[:id])
+        @workouts = Lesson.find_by_id(params[:id]).workouts
     end
 
     def edit 

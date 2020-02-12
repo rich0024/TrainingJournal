@@ -26,17 +26,17 @@ class WorkoutsController < ApplicationController
     end
 
     def show
-        @workout = workout.find_by_id(params[:id])
+        @workout = Workout.find_by_id(params[:id])
     end
 
     def edit
-        @workout = workout.find_by_id(params[:id])
+        @workout = Workout.find_by_id(params[:id])
     end
 
     def update
         @workout = Workout.find_by_id(params[:id])
         if @workout.update(workout_params)
-            redirect_to workouts_path
+            redirect_to lesson_workouts_path(params[:workout][:lesson_id])
         else
             render edit_workout_path
         end

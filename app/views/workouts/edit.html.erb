@@ -1,5 +1,7 @@
-<%= form_for([@workout.lesson, @workout]) do |f| %>
-
+<%= form_for(@workout) do |f| %>
+    <%= f.hidden_field :lesson_id %>
+    <br>
+    <br>
     <%= f.label :name %>
     <%= f.text_field :name %>
     <br>
