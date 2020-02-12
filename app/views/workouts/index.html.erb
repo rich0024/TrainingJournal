@@ -1,1 +1,24 @@
 <h1> Workouts </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Workout</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= workout.name %></td>
+        <td><%= workout.details %></td>
+        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Workout', new_lesson_workout_path(@lesson) %>
+<%= link_to 'Back to Lessons', user_lessons_path(@user) %>
