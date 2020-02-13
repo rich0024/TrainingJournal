@@ -26,13 +26,13 @@
   </thead>
 
   <tbody>
+  <% @lesson.workouts.each do |workout| %>
     <tr>
-    <% @workouts.each do |workout| %>
       <td><%= workout.name %></td>
       <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
       <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <% end %>
     </tr>
+  <% end %>
   </tbody>
 </table>
 <br>

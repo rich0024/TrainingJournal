@@ -1,4 +1,7 @@
 class LessonsController < ApplicationController
+    before_action :redirect_if_not_logged_in
+    before_action :set_lesson, only: [:show, :edit, :update]
+    before_action :redirect_if_not_correct_lesson_user, only: [:show, :edit, :update]
 
     def index
         @user = current_user
@@ -19,16 +22,12 @@ class LessonsController < ApplicationController
     end
 
     def show
-        @lesson = Lesson.find_by_id(params[:id])
-        @workouts = Lesson.find_by_id(params[:id]).workouts
     end
 
     def edit 
-        @lesson = Lesson.find_by_id(params[:id])
     end
 
     def update 
-        @lesson = Lesson.find_by_id(params[:id])
         if @lesson.update(lesson_params)
             redirect_to lessons_path
         else
@@ -46,5 +45,16 @@ class LessonsController < ApplicationController
 
     def lesson_params
         params.require(:lesson).permit(:name, :date)
+    end
+
+    def set_lesson
+        @lesson = Lesson.find_by_id(params[:id])
+        if !@lesson
+            redirect_to user_path(current_user.id)
+          end
+        end
+
+    def redirect_if_not_correct_lesson_user
+        redirect_to root_path if current_user.id != @lesson.user_id
     end
 end

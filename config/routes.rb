@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/signup' => 'users#new'  
   post '/signup' => 'users#create'
   delete '/logout' => 'sessions#destroy'
+
+  get '/auth/:provider/callback' => 'sessions#github'
   
   resources :lessons do 
     resources :workouts, only: [:new, :create, :index]

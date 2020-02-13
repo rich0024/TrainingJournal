@@ -1,4 +1,7 @@
 class WorkoutsController < ApplicationController
+    before_action :redirect_if_not_logged_in
+    before_action :set_workout, only: [:show, :edit, :update]
+    before_action :redirect_if_not_correct_workout_user, only: [:edit, :update, :show]
 
     def index
         @user = current_user
@@ -27,6 +30,7 @@ class WorkoutsController < ApplicationController
 
     def show
         @workout = Workout.find_by_id(params[:id])
+        redirect_if_not_correct_workout_user
     end
 
     def edit
@@ -52,6 +56,17 @@ class WorkoutsController < ApplicationController
 
     def workout_params
         params.require(:workout).permit(:lesson_id, :name, :details)
+    end
+
+    def set_workout
+        @workout = Workout.find_by_id(params[:id])
+        if !@workout
+            redirect_to user_path(current_user.id)
+          end
+        end
+
+    def redirect_if_not_correct_workout_user
+        redirect_to user_path(current_user.id) if current_user != @workout.user
     end
 
 end
