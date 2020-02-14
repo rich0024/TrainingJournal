@@ -21,6 +21,7 @@ class WorkoutsController < ApplicationController
     def create
         @workout = current_user.workouts.build(workout_params)
         @workout.user_id = current_user.id
+        @workout.category_id = Lesson.find_by_id(params[:workout][:lesson_id]).category_id
         if @workout.save
             redirect_to lesson_workouts_path(params[:workout][:lesson_id])
         else

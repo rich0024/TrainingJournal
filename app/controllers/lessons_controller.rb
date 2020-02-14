@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
     before_action :redirect_if_not_logged_in
     before_action :set_lesson, only: [:show, :edit, :update]
-    before_action :redirect_if_not_correct_lesson_user, only: [:show, :edit, :update]
+    before_action :redirect_if_not_correct_lesson_user, only: [:edit, :update]
 
     def index
         @user = current_user
@@ -10,6 +10,7 @@ class LessonsController < ApplicationController
 
     def new
         @lesson = Lesson.new
+        @lesson.build_category
     end
 
     def create
@@ -44,7 +45,7 @@ class LessonsController < ApplicationController
     private
 
     def lesson_params
-        params.require(:lesson).permit(:name, :date)
+        params.require(:lesson).permit(:name, :date, :category_id, category_attributes: [:name])
     end
 
     def set_lesson

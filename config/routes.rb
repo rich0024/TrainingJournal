@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   root 'sessions#home'
   post '/' => 'sessions#create'
   get '/signup' => 'users#new'  

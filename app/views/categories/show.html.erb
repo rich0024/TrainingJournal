@@ -1,0 +1,7 @@
+<h1><%= @category.name %> - <%= pluralize(@category.lessons.count, "lessons") %></h1>
+
+<ol>
+    <% @category.lessons.each do  |lesson| %>
+      <li><%= link_to lesson.name, lesson_path(lesson)  %></li>
+    <% end  %>
+</ol>

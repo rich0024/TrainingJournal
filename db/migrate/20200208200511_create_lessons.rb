@@ -4,6 +4,7 @@ class CreateLessons < ActiveRecord::Migration[5.2]
       t.string :name
       t.date :date
       t.belongs_to :user
+      t.belongs_to :category
 
       t.timestamps
     end
