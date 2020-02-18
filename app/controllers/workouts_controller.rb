@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
     before_action :redirect_if_not_logged_in
+    before_action :redirect_if_not_correct_lesson_user, only: [:new]
     before_action :set_workout, only: [:edit, :update, :destroy]
     before_action :redirect_if_not_correct_workout_user, only: [:edit, :update, :destroy]
 
@@ -12,7 +13,7 @@ class WorkoutsController < ApplicationController
         if params[:lesson_id] && @lesson = Lesson.find_by_id(params[:lesson_id])
             @workout = @lesson.workouts.build
         else
-            redirect_to lesson_workouts_path(@lesson)
+            redirect_to user_path(current_user.id)
         end
     end
 
@@ -63,6 +64,10 @@ class WorkoutsController < ApplicationController
 
     def redirect_if_not_correct_workout_user
         redirect_to user_path(current_user.id) if current_user.id != @workout.user_id
+    end
+
+    def redirect_if_not_correct_lesson_user
+        redirect_to user_path(current_user.id) if Lesson.find_by_id(params[:lesson_id]).user_id != current_user.id
     end
 
 end
