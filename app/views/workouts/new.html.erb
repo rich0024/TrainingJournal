@@ -1,18 +1,4 @@
 <%= render partial: "layouts/errors", locals: {object: @workout} %>
 <h1>Workout</h1>
 
-<%= form_for(@workout) do |f| %>
-
-    <%= f.hidden_field :lesson_id %>
-    <br>
-    <br>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
-    <br>
-    <%= f.label :deatils %>
-    <%= f.text_area :details%>
-    <br>
-    <br>
-    <%= f.submit 'Submit' %>
-    <% end %>
+<%= render partial: "form" %>

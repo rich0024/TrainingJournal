@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
     before_action :redirect_if_not_logged_in
     before_action :set_lesson, only: [:show, :edit, :update]
-    before_action :redirect_if_not_correct_lesson_user, only: [:edit, :update]
+    before_action :redirect_if_not_correct_lesson_user, only: [:edit, :update, :destroy]
 
     def index
         @user = current_user
