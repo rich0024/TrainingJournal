@@ -9,10 +9,10 @@
   
   <tbody>
     <tr>
-      <td><%= @lesson.date %></td>
+        <td><%= @lesson.date %></td>
       <% if @lesson.user_id = current_user.id %>
-      <td><%= link_to 'Edit', edit_lesson_path(@lesson) %></td>
-      <td><%= link_to 'Destroy', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_lesson_path(@lesson) %></td>
+        <td><%= link_to 'Destroy', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% else %>
       <td> </td>
       <% end %>

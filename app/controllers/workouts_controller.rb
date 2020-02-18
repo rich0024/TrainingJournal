@@ -25,7 +25,7 @@ class WorkoutsController < ApplicationController
         if @workout.save
             redirect_to lesson_workouts_path(params[:workout][:lesson_id])
         else
-            redirect_to new_lesson_workout_path(params[:workout][:lesson_id])
+            render :new
         end
     end
 

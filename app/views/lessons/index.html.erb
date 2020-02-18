@@ -1,5 +1,11 @@
 <h1> Hello <%= @user.username %> </h1>
 
+<%= form_tag("/lessons", method: 'get') do %>
+  <%= select_tag "date", options_for_select(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']), include_blank: true %>
+  <%= submit_tag("Filter") %>
+
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -22,4 +28,4 @@
   </tbody>
 </table>
 
-<%= link_to 'New Session', new_lesson_path %>
+<%= link_to 'New Session', new_user_lesson_path(current_user.id) %>

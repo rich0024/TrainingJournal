@@ -5,18 +5,51 @@ class LessonsController < ApplicationController
 
     def index
         @user = current_user
-        @lessons = current_user.lessons
+        if !params[:date].blank?
+            if params[:date] == "January"
+                @lessons = current_user.lessons.january
+            elsif params[:date] == "February"
+                @lessons = current_user.lessons.february
+            elsif params[:date] == "March"
+                @lessons = current_user.lessons.march
+            elsif params[:date] == "April"
+                @lessons = current_user.lessons.april
+            elsif params[:date] == "May"
+                @lessons = current_user.lessons.may
+            elsif params[:date] == "June"
+                @lessons = current_user.lessons.june
+            elsif params[:date] == "July"
+                @lessons = current_user.lessons.july
+            elsif params[:date] == "August"
+                @lessons = current_user.lessons.august
+            elsif params[:date] == "September"
+                @lessons = current_user.lessons.september
+            elsif params[:date] == "October"
+                @lessons = current_user.lessons.october
+            elsif params[:date] == "November"
+                @lessons = current_user.lessons.november            
+            elsif params[:date] == "December"
+                @lessons = current_user.lessons.december
+            end
+        else
+        # if no filters are applied, show all posts
+        @lessons = current_user.lessons.all
+        end
     end
 
     def new
-        @lesson = Lesson.new
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+          @lesson = @user.lessons.build
+        else
+          @lesson = Lesson.new
+        end
         @lesson.build_category
-    end
+      end
 
     def create
         @lesson = current_user.lessons.build(lesson_params)
         if @lesson.save
-            redirect_to lessons_path
+            redirect_to user_lessons_path(current_user.id)
         else
             render :new
         end
