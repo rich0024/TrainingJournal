@@ -32,7 +32,6 @@ class LessonsController < ApplicationController
                 @lessons = current_user.lessons.december
             end
         else
-        # if no filters are applied, show all posts
         @lessons = current_user.lessons.all
         end
     end
@@ -65,7 +64,7 @@ class LessonsController < ApplicationController
         if @lesson.update(lesson_params)
             redirect_to lessons_path
         else
-            render edit_lesson_path
+            render :edit
         end
     end
 
