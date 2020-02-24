@@ -1,4 +1,4 @@
-<h1><%= @category.name %> - <%= pluralize(@category.lessons.count, "lessons") %></h1>
+<h1><%= @category.name %> - <%= pluralize(@category.lessons.count, "Lesson") %></h1>
 
 <ol>
     <% @category.lessons.each do  |lesson| %>

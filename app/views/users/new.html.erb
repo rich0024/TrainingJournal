@@ -1,7 +1,7 @@
 <%= render partial: "layouts/errors", locals: {object: @user} %>
 <h1>Sign Up!</h1>
 
-<%= form_for(@user, url:'/signup') do |f| %>
+<%= form_for(@user, path:'/signup') do |f| %>
 
     <%= f.label :email %>
     <%= f.email_field :email %>
