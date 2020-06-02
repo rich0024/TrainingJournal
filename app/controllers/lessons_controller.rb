@@ -6,6 +6,10 @@ class LessonsController < ApplicationController
     def index
         @user = current_user
         if !params[:date].blank?
+            # case params[:date]
+            #when 'January'
+                #@lessons = 
+            #when 'op'
             if params[:date] == "January"
                 @lessons = current_user.lessons.january
             elsif params[:date] == "February"
