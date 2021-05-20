@@ -1,0 +1,28 @@
+<h1> <%= @lesson.name %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Workout</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workouts.each do |workout| %>
+      <tr>
+        <td><%= workout.name %></td>
+        <td><%= workout.details %></td>
+        <% if @lesson.user_id = current_user.id %>
+        <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+        <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <td> </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add Workout', new_lesson_workout_path(@lesson) %>
+<%= link_to 'Back to Sessions', user_lessons_path(current_user) %>

@@ -1,0 +1,42 @@
+<h1> <%= @lesson.name %> </h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Date</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+        <td><%= @lesson.date %></td>
+      <% if @lesson.user_id = current_user.id %>
+        <td><%= link_to 'Edit', edit_lesson_path(@lesson) %></td>
+        <td><%= link_to 'Destroy', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% else %>
+      <td> </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Workouts</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @lesson.workouts.each do |workout| %>
+    <tr>
+      <td><%= workout.name %></td>
+      <td><%= workout.details %></td>
+      <td><%= link_to 'Edit', edit_workout_path(workout) %></td>
+      <td><%= link_to 'Destroy', workout, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'Add Workout', new_lesson_workout_path(@lesson) %> | <%= link_to 'Back', lessons_path %>

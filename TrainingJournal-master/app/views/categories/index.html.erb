@@ -1,0 +1,13 @@
+
+<ul>
+<% @categories.each do |category| %>
+  <li>
+    <%= link_to category.name, category_path(category) %>
+    <ol>
+      <% category.lessons.each do  |lesson| %>
+        <li><%= link_to lesson.name, lesson_path(lesson)  %></li>
+      <% end  %>
+    </ol>
+  </li>
+<% end %>
+</ul>

@@ -1,0 +1,9 @@
+<%= render partial: "layouts/errors", locals: {object: @lesson} %>
+
+<h1><%= @lesson.name %></h1>
+
+<%= render partial: "form" %>
+
+    <%= link_to 'Destroy', @lesson, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+    <%= link_to 'Back to Sessions', user_lessons_path(@lesson.user_id) %>

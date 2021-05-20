@@ -1,0 +1,28 @@
+<%= flash[:message]  if flash[:message]%>
+</br>
+</br>
+</br>
+<div class='d-flex flex-column position-absolute top-50 start-50 translate-middle'>
+<h1 class='fst-italic'>Training Journal</h1>
+<%= form_for :user do |f| %>
+    <div class="field form-group h3 text-secondary">
+        <%= f.label :username %>
+        <%= f.text_field :username,
+        class:"form-control" %>
+    </div>
+    <div class="field form-group h3 text-secondary">
+        <%= f.label :password %>
+        <%= f.password_field :password,
+        class:"form-control" %>
+    </div>
+    </br>
+    <div class="field form-group">
+        <%= f.submit 'Login', class:'btn btn-secondary' %>
+    </div>
+    <% end %>
+    <br>
+    <%= link_to 'Login with GitHub', '/auth/github'%>
+    <br>
+    <p> Don't have an account? <%= link_to "Signup", '/signup' %> </p>
+    
+</div>
