@@ -1,6 +1,6 @@
+<div class='d-flex flex-column position-absolute top-50 start-50 translate-middle'>
 <h1> <%= @lesson.name %> </h1>
-
-<table>
+<table class="table table-dark table-striped table-hover">
   <thead>
     <tr>
       <th>Workout</th>
@@ -26,3 +26,4 @@
 
 <%= link_to 'Add Workout', new_lesson_workout_path(@lesson) %>
 <%= link_to 'Back to Sessions', user_lessons_path(current_user) %>
+</div>

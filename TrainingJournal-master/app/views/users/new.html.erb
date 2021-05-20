@@ -1,8 +1,7 @@
+<div class='d-flex flex-column position-absolute top-50 start-50 translate-middle'>
 <%= render partial: "layouts/errors", locals: {object: @user} %>
 <h1>Sign Up!</h1>
-
 <%= form_for(@user, path:'/signup') do |f| %>
-
     <%= f.label :email %>
     <%= f.email_field :email %>
     <br>
@@ -20,3 +19,4 @@
     <br>
     <br>
     <%= link_to "Back to login", '/' %> 
+</div>

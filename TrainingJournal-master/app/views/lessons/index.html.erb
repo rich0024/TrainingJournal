@@ -1,31 +1,29 @@
-<h1> Hello <%= @user.username %> </h1>
-
-<%= form_tag("/lessons", method: 'get') do %>
-  <%= select_tag "date", options_for_select(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']), include_blank: true %>
-  <%= submit_tag("Filter") %>
-
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>Session</th>
-      <th>Date</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-  <% @lessons.each do |lesson| %>
-    <tr>
-      <td><%= lesson.name %></td>
-      <td><%= lesson.date %></td>
-      <td><%= link_to 'Show', lesson %></td>
-      <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
-      <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+<div class='d-flex flex-column position-absolute top-50 start-50 translate-middle'>
+  <h1> Hello <%= @user.username %> </h1>
+  <%= form_tag("/lessons", method: 'get') do %>
+    <%= select_tag "date", options_for_select(['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']), include_blank: true %>
+    <%= submit_tag("Filter") %>
   <% end %>
-  </tbody>
-</table>
 
-<%= link_to 'New Session', new_user_lesson_path(current_user.id) %>
+  <table class="table table-dark table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Session</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @lessons.each do |lesson| %>
+      <tr>
+        <td><%= lesson.name %></td>
+        <td><%= lesson.date %></td>
+        <td><%= link_to 'Show', lesson %></td>
+        <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>
+        <td><%= link_to 'Destroy', lesson, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to 'New Session', new_user_lesson_path(current_user.id) %>
+</div>
